@@ -1,6 +1,6 @@
 import { EclipseIcon } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
-import authBackground from "@/shared/assets/images/auth.png";
+import authBackground from "@/shared/assets/images/auth.jpg";
 
 export default function AuthLayout() {
   return (
