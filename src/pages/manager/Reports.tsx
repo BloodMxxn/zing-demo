@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { SearchIcon, FilterIcon, DownloadIcon, EyeIcon } from "lucide-react";
+import { SearchIcon, FilterIcon, DownloadIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 import { cn } from "@/shared/lib/cn";
 import { toPersianNumber } from "@/shared/lib/utils";
 
@@ -54,7 +55,7 @@ export default function ManagerReports() {
             <option>عصر</option>
             <option>شب</option>
           </select>
-          <Input className="w-36" dir="ltr" type="date" />
+          <Input className="w-36" dir="ltr" type="date" placeholder="تاریخ" />
         </div>
       </div>
 
@@ -70,23 +71,26 @@ export default function ManagerReports() {
                   <th className="pb-3 text-right font-medium text-muted-foreground">شیفت</th>
                   <th className="pb-3 text-right font-medium text-muted-foreground">تاریخ</th>
                   <th className="pb-3 text-right font-medium text-muted-foreground">مبلغ کل</th>
-                  <th className="pb-3 text-right font-medium text-muted-foreground">عملیات</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {reports.map((report, index) => (
-                  <tr key={report.id} className="hover:bg-muted/50">
+                  <tr key={report.id}>
                     <td className="py-3 text-muted-foreground">{toPersianNumber(index + 1)}</td>
-                    <td className="py-3 font-medium">{report.cashier}</td>
+                    <td className="py-3">
+                      <Link
+                        to={`/manager/reports/${report.id}`}
+                        className="font-medium hover:text-primary"
+                      >
+                        {report.cashier}
+                      </Link>
+                    </td>
                     <td className="py-3 text-muted-foreground">{report.shift}</td>
                     <td className="py-3 text-muted-foreground">{report.date}</td>
-                    <td className="py-3 text-sm" dir="ltr">
-                      {toPersianNumber(report.total.toLocaleString())}
-                    </td>
-                    <td className="py-3">
-                      <Button variant="ghost" size="icon-xs">
-                        <EyeIcon size={14} />
-                      </Button>
+                    <td className="py-3 text-sm">
+                      <Link to={`/manager/reports/${report.id}`} className="hover:text-primary">
+                        {toPersianNumber(report.total.toLocaleString())}
+                      </Link>
                     </td>
                   </tr>
                 ))}
@@ -123,7 +127,11 @@ export default function ManagerReports() {
       {/* Mobile Cards */}
       <div className="divide-y divide-border rounded-xl border border-border md:hidden">
         {reports.map((report) => (
-          <div key={report.id} className="flex items-center justify-between px-3 py-2.5">
+          <Link
+            key={report.id}
+            to={`/manager/reports/${report.id}`}
+            className="flex items-center justify-between px-3 py-2.5 transition-colors hover:bg-muted/50"
+          >
             <div className="flex items-center gap-2.5">
               <div className="flex size-8 items-center justify-center rounded-full bg-muted text-xs font-bold">
                 {report.cashier.charAt(0)}
@@ -135,15 +143,10 @@ export default function ManagerReports() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <p className="text-xs text-muted-foreground" dir="ltr">
-                {toPersianNumber(report.total.toLocaleString())}
-              </p>
-              <Button variant="ghost" size="icon-xs">
-                <EyeIcon size={14} />
-              </Button>
-            </div>
-          </div>
+            <p className="font-mono text-xs text-muted-foreground">
+              {toPersianNumber(report.total.toLocaleString())}
+            </p>
+          </Link>
         ))}
       </div>
     </div>

@@ -45,11 +45,11 @@ export default function ManagerCashiers() {
                 </Field>
                 <Field>
                   <FieldLabel>نام کاربری</FieldLabel>
-                  <Input dir="ltr" placeholder="username" />
+                  <Input placeholder="نام کاربری صندوق‌دار" />
                 </Field>
                 <Field>
                   <FieldLabel>رمز عبور</FieldLabel>
-                  <Input dir="ltr" type="password" placeholder="••••••••" />
+                  <Input type="password" placeholder="رمز عبور صندوق‌دار" />
                 </Field>
               </div>
               <div className="flex justify-end gap-2">

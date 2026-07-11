@@ -41,7 +41,6 @@ const defaultFields: FieldWidget[] = [
   { id: "3", type: "number", label: "مبلغ کارتی", required: true },
   { id: "4", type: "number", label: "تعداد فاکتور", required: true },
   { id: "5", type: "number", label: "مبلغ انتقالی", required: false },
-  { id: "6", type: "number", label: "مبلغ چک", required: false },
   { id: "7", type: "textarea", label: "توضیحات", required: false },
 ];
 

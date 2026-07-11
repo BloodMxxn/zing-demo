@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowUpIcon, EyeIcon } from "lucide-react";
+import { ArrowUpIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 import { toPersianNumber } from "@/shared/lib/utils";
 
 const stats = [
-  { title: "گزارش‌های امروز", value: 10, icon: "📋", trend: "+۲", up: true },
-  { title: "کل گزارش‌ها", value: 256, icon: "📊", trend: "از ابتدای ماه", up: null },
-  { title: "صندوق‌داران فعال", value: 4, icon: "👥", trend: "۲ آنلاین", up: null },
+  { title: "گزارش‌های امروز", value: 2, icon: "📋", trend: "+۲", up: true },
+  { title: "کل گزارش‌ها", value: 49, icon: "📊", trend: "از ابتدای ماه", up: null },
+  { title: "صندوق‌داران فعال", value: 4, icon: "👥", up: null },
   { title: "میانگین فروش", value: "12.5M", icon: "💰", trend: "+۸٪", up: true },
 ];
 
@@ -24,7 +24,7 @@ export default function ManagerDashboard() {
       <div>
         <h1 className="font-morabba text-2xl sm:text-3xl">داشبورد مدیر</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          خوش آمدید! امروز {toPersianNumber(10)} گزارش ثبت شده است.
+          خوش آمدید! امروز {toPersianNumber(2)} گزارش ثبت شده است.
         </p>
       </div>
 
@@ -60,11 +60,14 @@ export default function ManagerDashboard() {
 
       {/* Recent Reports */}
       <Card>
-        <CardHeader className="flex items-center justify-between">
+        <CardHeader className="flex-row items-center justify-between">
           <CardTitle className="text-base">گزارش‌های اخیر</CardTitle>
-          <Button variant="ghost" size="sm">
+          <Link
+            to="/manager/reports"
+            className="text-sm text-muted-foreground hover:text-foreground"
+          >
             مشاهده همه
-          </Button>
+          </Link>
         </CardHeader>
         <CardContent>
           {/* Desktop Table */}
@@ -76,22 +79,25 @@ export default function ManagerDashboard() {
                   <th className="pb-3 text-right font-medium text-muted-foreground">شیفت</th>
                   <th className="pb-3 text-right font-medium text-muted-foreground">تاریخ</th>
                   <th className="pb-3 text-right font-medium text-muted-foreground">مبلغ کل</th>
-                  <th className="pb-3 text-right font-medium text-muted-foreground">عملیات</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {recentReports.map((report) => (
-                  <tr key={report.id} className="hover:bg-muted/50">
-                    <td className="py-3 font-medium">{report.cashier}</td>
+                  <tr key={report.id}>
+                    <td className="py-3">
+                      <Link
+                        to={`/manager/reports/${report.id}`}
+                        className="font-medium hover:text-primary"
+                      >
+                        {report.cashier}
+                      </Link>
+                    </td>
                     <td className="py-3 text-muted-foreground">{report.shift}</td>
                     <td className="py-3 text-muted-foreground">{report.date}</td>
-                    <td className="py-3 text-sm" dir="rtl">
-                      {toPersianNumber(report.total.toLocaleString())}
-                    </td>
-                    <td className="py-3">
-                      <Button variant="ghost" size="icon-xs">
-                        <EyeIcon />
-                      </Button>
+                    <td className="py-3 text-sm">
+                      <Link to={`/manager/reports/${report.id}`} className="hover:text-primary">
+                        {toPersianNumber(report.total.toLocaleString())}
+                      </Link>
                     </td>
                   </tr>
                 ))}
@@ -100,29 +106,28 @@ export default function ManagerDashboard() {
           </div>
 
           {/* Mobile Cards */}
-          <div className="space-y-3 md:hidden">
+          <div className="space-y-2 md:hidden">
             {recentReports.map((report) => (
-              <div key={report.id} className="rounded-xl border border-border p-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex size-8 items-center justify-center rounded-full bg-muted text-xs font-bold">
-                      {report.cashier.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium">{report.cashier}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {report.shift} · {report.date}
-                      </p>
-                    </div>
+              <Link
+                key={report.id}
+                to={`/manager/reports/${report.id}`}
+                className="flex items-center justify-between rounded-xl border border-border p-3 transition-colors hover:bg-muted/50"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="flex size-8 items-center justify-center rounded-full bg-muted text-xs font-bold">
+                    {report.cashier.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{report.cashier}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {report.shift} · {report.date}
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-center justify-between mt-2 border-t border-border pt-2">
-                  <p className="text-xs text-muted-foreground">مبلغ کل</p>
-                  <p className="text-sm font-medium">
-                    {toPersianNumber(report.total.toLocaleString())}
-                  </p>
-                </div>
-              </div>
+                <p className="font-mono text-sm font-medium">
+                  {toPersianNumber(report.total.toLocaleString())}
+                </p>
+              </Link>
             ))}
           </div>
         </CardContent>

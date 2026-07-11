@@ -7,6 +7,7 @@ import ManagerDashboard from "./pages/manager/Dashboard";
 import ManagerReports from "./pages/manager/Reports";
 import ManagerCashiers from "./pages/manager/Cashiers";
 import ManagerFieldBuilder from "./pages/manager/FieldBuilder";
+import ManagerReportView from "./pages/manager/ReportView";
 import CashierDashboard from "./pages/cashier/Dashboard";
 import CashierSubmit from "./pages/cashier/Submit";
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       children: [
         { index: true, element: <ManagerDashboard /> },
         { path: "reports", element: <ManagerReports /> },
+        { path: "reports/:id", element: <ManagerReportView /> },
         { path: "cashiers", element: <ManagerCashiers /> },
         { path: "fields", element: <ManagerFieldBuilder /> },
       ],
