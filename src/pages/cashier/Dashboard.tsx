@@ -63,19 +63,19 @@ export default function CashierDashboard() {
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <div className="rounded-xl bg-muted/50 p-3">
               <p className="text-[10px] text-muted-foreground sm:text-xs">مبلغ کل</p>
-              <p className="mt-0.5 font-mono text-base font-medium sm:text-lg" dir="rtl">
+              <p className="mt-0.5 text-base font-medium sm:text-lg" dir="rtl">
                 {formatPrice(lastReport.total)}
               </p>
             </div>
             <div className="rounded-xl bg-muted/50 p-3">
               <p className="text-[10px] text-muted-foreground sm:text-xs">نقدی</p>
-              <p className="mt-0.5 font-mono text-base sm:text-lg" dir="rtl">
+              <p className="mt-0.5 text-base sm:text-lg" dir="rtl">
                 {formatPrice(lastReport.cash)}
               </p>
             </div>
             <div className="rounded-xl bg-muted/50 p-3">
               <p className="text-[10px] text-muted-foreground sm:text-xs">کارتی</p>
-              <p className="mt-0.5 font-mono text-base sm:text-lg" dir="rtl">
+              <p className="mt-0.5 text-base sm:text-lg" dir="rtl">
                 {formatPrice(lastReport.cards)}
               </p>
             </div>

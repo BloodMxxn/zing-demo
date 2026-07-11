@@ -7,7 +7,7 @@ export default function CashierLayout() {
       {/* Top Bar */}
       <header className="sticky top-0 z-10 border-b border-border bg-card">
         <div className="flex items-center justify-between px-4 py-3 sm:px-6">
-          <Link to="/cashier" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <div className="flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <EclipseIcon size={14} />
             </div>

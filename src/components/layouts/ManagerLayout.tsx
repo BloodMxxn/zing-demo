@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { EclipseIcon, MenuIcon, XIcon, LayoutDashboardIcon, ClipboardListIcon, UsersIcon, SettingsIcon, LogOutIcon } from "lucide-react";
+import {
+  EclipseIcon,
+  MenuIcon,
+  XIcon,
+  LayoutDashboardIcon,
+  ClipboardListIcon,
+  UsersIcon,
+  SettingsIcon,
+  LogOutIcon,
+} from "lucide-react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { cn } from "@/shared/lib/cn";
 
@@ -32,7 +41,7 @@ export default function ManagerLayout() {
       >
         {/* Logo */}
         <div className="flex items-center justify-between border-b border-border px-4 py-4">
-          <Link to="/manager" className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2.5">
             <div className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
               <EclipseIcon size={20} />
             </div>

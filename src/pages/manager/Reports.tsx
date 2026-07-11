@@ -80,7 +80,7 @@ export default function ManagerReports() {
                     <td className="py-3 font-medium">{report.cashier}</td>
                     <td className="py-3 text-muted-foreground">{report.shift}</td>
                     <td className="py-3 text-muted-foreground">{report.date}</td>
-                    <td className="py-3 font-mono text-sm" dir="ltr">
+                    <td className="py-3 text-sm" dir="ltr">
                       {toPersianNumber(report.total.toLocaleString())}
                     </td>
                     <td className="py-3">
@@ -136,7 +136,7 @@ export default function ManagerReports() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <p className="font-mono text-xs text-muted-foreground" dir="ltr">
+              <p className="text-xs text-muted-foreground" dir="ltr">
                 {toPersianNumber(report.total.toLocaleString())}
               </p>
               <Button variant="ghost" size="icon-xs">

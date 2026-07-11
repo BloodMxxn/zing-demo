@@ -85,7 +85,7 @@ export default function ManagerDashboard() {
                     <td className="py-3 font-medium">{report.cashier}</td>
                     <td className="py-3 text-muted-foreground">{report.shift}</td>
                     <td className="py-3 text-muted-foreground">{report.date}</td>
-                    <td className="py-3 font-mono text-sm" dir="rtl">
+                    <td className="py-3 text-sm" dir="rtl">
                       {toPersianNumber(report.total.toLocaleString())}
                     </td>
                     <td className="py-3">
@@ -118,7 +118,7 @@ export default function ManagerDashboard() {
                 </div>
                 <div className="flex items-center justify-between mt-2 border-t border-border pt-2">
                   <p className="text-xs text-muted-foreground">مبلغ کل</p>
-                  <p className="font-mono text-sm font-medium">
+                  <p className="text-sm font-medium">
                     {toPersianNumber(report.total.toLocaleString())}
                   </p>
                 </div>
