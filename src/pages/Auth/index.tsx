@@ -10,7 +10,7 @@ export default function AuthPage() {
   const [username, setUsername] = useState("");
 
   function clickHandler() {
-    if (username === "admin") {
+    if (username.toLowerCase() === "admin") {
       navigate("/manager");
     } else {
       navigate("/cashier");

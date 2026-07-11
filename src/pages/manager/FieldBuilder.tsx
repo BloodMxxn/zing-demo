@@ -10,9 +10,8 @@ import {
   ChevronDownIcon,
   ToggleLeftIcon,
   AlignLeftIcon,
-  ArrowUpIcon,
-  ArrowDownIcon,
   LockIcon,
+  Edit2Icon,
 } from "lucide-react";
 
 interface FieldWidget {
@@ -71,14 +70,6 @@ export default function ManagerFieldBuilder() {
 
   const updateField = (id: string, updates: Partial<FieldWidget>) => {
     setFields(fields.map((f) => (f.id === id ? { ...f, ...updates } : f)));
-  };
-
-  const moveField = (index: number, direction: "up" | "down") => {
-    const newIndex = direction === "up" ? index - 1 : index + 1;
-    if (newIndex < 0 || newIndex >= fields.length) return;
-    const newFields = [...fields];
-    [newFields[index], newFields[newIndex]] = [newFields[newIndex], newFields[index]];
-    setFields(newFields);
   };
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -254,31 +245,17 @@ export default function ManagerFieldBuilder() {
                       {/* Actions */}
                       <div className="flex items-center gap-1">
                         <button
-                          onClick={() => moveField(index, "up")}
-                          disabled={index === 0}
-                          className="rounded p-1 text-muted-foreground hover:bg-muted disabled:opacity-30"
-                        >
-                          <ArrowUpIcon size={14} />
-                        </button>
-                        <button
-                          onClick={() => moveField(index, "down")}
-                          disabled={index === fields.length - 1}
-                          className="rounded p-1 text-muted-foreground hover:bg-muted disabled:opacity-30"
-                        >
-                          <ArrowDownIcon size={14} />
-                        </button>
-                        <button
                           onClick={() => setEditingId(editingId === field.id ? null : field.id)}
                           className={cn(
                             "rounded p-1 hover:bg-muted",
                             editingId === field.id ? "text-primary" : "text-muted-foreground",
                           )}
                         >
-                          ✏️
+                          <Edit2Icon size={16} />
                         </button>
                         <button
                           onClick={() => removeField(field.id)}
-                          className="rounded p-1 text-destructive opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-50"
+                          className="rounded p-1 text-destructive hover:bg-red-50"
                         >
                           <Trash2Icon size={14} />
                         </button>

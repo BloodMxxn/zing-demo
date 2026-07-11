@@ -60,7 +60,7 @@ export default function ManagerDashboard() {
 
       {/* Recent Reports */}
       <Card>
-        <CardHeader className="flex-row items-center justify-between">
+        <CardHeader className="flex items-center justify-between">
           <CardTitle className="text-base">گزارش‌های اخیر</CardTitle>
           <Button variant="ghost" size="sm">
             مشاهده همه
